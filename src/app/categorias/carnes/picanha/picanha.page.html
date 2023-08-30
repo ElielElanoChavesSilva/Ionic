@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>picanha</ion-title>
+    <ion-buttons slot="end" routerLink="/carrinho">
+      <ion-button>
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge color="light">{{qtdeItensCarrinho}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-searchbar mode="ios" animated="true" placeholder="Buscar Produto"></ion-searchbar>
+  <ion-item *ngFor="let produto of listaProdutos">
+    <ion-thumbnail slot="start">
+      <img [src]="produto.foto"/>
+    </ion-thumbnail>
+    <ion-label>
+      <H2>{{produto.nome | uppercase }}</H2>
+      <p>{{produto.descricao}}</p>
+    </ion-label>
+    <ion-badge slot="end">R$: {{produto.valor | number: '1.2-2'}}</ion-badge>
+    <ion-button slot="end"size="default" color="success" (click)="addProdutoCarrinho(produto)">
+      <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-content>
